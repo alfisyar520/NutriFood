@@ -3,4 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="kuning">#F3C623</color>
+    <color name="abu">#8B959A</color>
+    <color name="biru">#3C82FF</color>
+    <color name="putih">#FFFFFF</color>
 </resources>
