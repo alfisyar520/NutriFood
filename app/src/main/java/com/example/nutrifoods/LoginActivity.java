@@ -47,8 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent lupaPass_start = new Intent(LoginActivity.this, LupaPassActivity.class);
-                //startActivity(lupaPass_start);
+                Intent lupaPass_start = new Intent(LoginActivity.this, LupaPassActivity.class);
+                startActivity(lupaPass_start);
             }
         });
 
@@ -57,8 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent dashboard_start = new Intent(LoginActivity.this, DashboardActivity.class);
-                //startActivity(dashboard_start);
 
                 String txt_email = login_email.getText().toString();
                 String txt_password = login_password.getText().toString();
@@ -71,9 +69,9 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
-                                        Intent toHome = new Intent(LoginActivity.this, DashboardActivity.class);
-                                        toHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(toHome);
+                                        Intent toDashboard = new Intent(LoginActivity.this, DashboardActivity.class);
+                                        toDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(toDashboard);
                                         finish();
                                         //pd.dismiss();
                                     } else{

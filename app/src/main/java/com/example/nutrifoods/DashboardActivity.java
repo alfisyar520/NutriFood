@@ -22,8 +22,8 @@ public class DashboardActivity extends AppCompatActivity {
         fab_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent postAdd_start = new Intent(DashboardActivity.this, PostActivity.class);
-                //startActivity(postAdd_start);
+                Intent postAdd_start = new Intent(DashboardActivity.this, PostActivity.class);
+                startActivity(postAdd_start);
             }
         });
     }
