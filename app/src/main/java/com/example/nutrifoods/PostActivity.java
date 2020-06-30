@@ -32,6 +32,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class PostActivity extends AppCompatActivity {
 
     private Button btn_post;
@@ -39,6 +44,8 @@ public class PostActivity extends AppCompatActivity {
     private EditText et_nama_makanan;
     private Uri mImageUri;
     private String mUser;
+    private String currentDate;
+    private String currentTime;
 
     //firebase
     private FirebaseAuth mAuth;
@@ -73,6 +80,15 @@ public class PostActivity extends AppCompatActivity {
         et_nama_makanan = findViewById(R.id.et_post_namaMakanan);
 
         getDataUserFirebase();
+
+        //date
+        Calendar calendar = Calendar.getInstance();
+        currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+
+        //time
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        currentTime = format.format(calendar.getTime());
+
 
         btn_post.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +143,7 @@ public class PostActivity extends AppCompatActivity {
                     if (task.isSuccessful()){
                         Uri downloadUri = task.getResult();
                         postMakanan.setImage(downloadUri.toString());
-                        MakananModel postMakanan = new MakananModel(user.getId(), nama_makanan, downloadUri.toString(), user.getUsername());
+                        MakananModel postMakanan = new MakananModel(user.getId(), nama_makanan, downloadUri.toString(), user.getUsername(), currentDate, currentTime);
 
                         db.collection("Data Postingan").document().set(postMakanan);
 
