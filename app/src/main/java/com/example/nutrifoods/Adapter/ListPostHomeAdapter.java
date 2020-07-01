@@ -16,8 +16,13 @@ import com.bumptech.glide.Glide;
 import com.example.nutrifoods.Activity.HasilActivity;
 import com.example.nutrifoods.Model.MakananModel;
 import com.example.nutrifoods.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -42,7 +47,7 @@ public class ListPostHomeAdapter extends RecyclerView.Adapter<ListPostHomeAdapte
 
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cardview_makanan, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cardview_daftar_makanan, parent, false);
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser().getUid();
         return new ListViewHolder(view);
@@ -55,11 +60,11 @@ public class ListPostHomeAdapter extends RecyclerView.Adapter<ListPostHomeAdapte
     }
 
     @Override
-    public void onBindViewHolder(ListPostHomeAdapter.ListViewHolder holder, int position) {
+    public void onBindViewHolder(final ListPostHomeAdapter.ListViewHolder holder, int position) {
 
+        db = FirebaseFirestore.getInstance();
         /*
         int count = 0;
-        db = FirebaseFirestore.getInstance();
         for (Map.Entry<String, MakananModel> e : data.entrySet()){
             percobaan.put(e.getKey(), e.getValue().getImage());
         }
@@ -76,8 +81,29 @@ public class ListPostHomeAdapter extends RecyclerView.Adapter<ListPostHomeAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent hasil_start = new Intent(mContext, HasilActivity.class);
-                mContext.startActivity(hasil_start);
+                String nameOfPic = listMakanan.get(holder.getAdapterPosition()).getImage();
+                CollectionReference docRefDataPost = db.collection("Data Postingan");
+                docRefDataPost.whereEqualTo("image", nameOfPic).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for (DocumentSnapshot documentSnapshot: task.getResult()){
+                                MakananModel makananModel = documentSnapshot.toObject(MakananModel.class);
+                                Intent hasil_start = new Intent(mContext, HasilActivity.class);
+                                hasil_start.putExtra("id_makanan", documentSnapshot.getId());
+                                hasil_start.putExtra("namaMakanan", makananModel.getNamaMakanan());
+                                hasil_start.putExtra("userID", makananModel.getUserID());
+                                hasil_start.putExtra("image", makananModel.getImage());
+                                hasil_start.putExtra("usernamePublisher", makananModel.getUsernamePublisher());
+                                hasil_start.putExtra("currentDate", makananModel.getCurrentDate());
+                                hasil_start.putExtra("currentTime", makananModel.getCurrentTime());
+
+                                mContext.startActivity(hasil_start);
+                            }
+
+                        }
+                    }
+                });
             }
         });
     }

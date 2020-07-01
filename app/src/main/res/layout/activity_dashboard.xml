@@ -49,7 +49,7 @@
             android:id="@+id/rv_home_makanan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_cardview_makanan"
+            tools:listitem="@layout/item_cardview_daftar_makanan"
             />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

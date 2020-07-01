@@ -39,14 +39,11 @@
             android:textSize="30sp" />
 
         <ImageView
-            android:id="@+id/imgSampahBuy"
+            android:id="@+id/iv_hasil_GambarMakanan"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:background="@color/cardview_dark_background"
             android:layout_gravity="center"/>
-
-
-
 
     </LinearLayout>
 
@@ -59,7 +56,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp">
 
