@@ -1,4 +1,4 @@
-package com.example.nutrifoods;
+package com.example.nutrifoods.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.nutrifoods.Model.MakananModel;
 import com.example.nutrifoods.Model.User;
+import com.example.nutrifoods.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,7 +36,6 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class PostActivity extends AppCompatActivity {
 

@@ -1,6 +1,7 @@
 package com.example.nutrifoods.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.nutrifoods.Activity.HasilActivity;
 import com.example.nutrifoods.Model.MakananModel;
 import com.example.nutrifoods.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ListPostHomeAdapter extends RecyclerView.Adapter<ListPostHomeAdapter.ListViewHolder>{
 
 
-    private Map<String, String> percobaan = new Hashtable<>();
+    //private Map<String, String> percobaan = new Hashtable<>();
 
     //firebase
     private FirebaseAuth mAuth;
@@ -55,11 +57,14 @@ public class ListPostHomeAdapter extends RecyclerView.Adapter<ListPostHomeAdapte
     @Override
     public void onBindViewHolder(ListPostHomeAdapter.ListViewHolder holder, int position) {
 
+        /*
         int count = 0;
         db = FirebaseFirestore.getInstance();
         for (Map.Entry<String, MakananModel> e : data.entrySet()){
             percobaan.put(e.getKey(), e.getValue().getImage());
         }
+
+         */
 
 
 
@@ -68,7 +73,13 @@ public class ListPostHomeAdapter extends RecyclerView.Adapter<ListPostHomeAdapte
                 .load(listMakanan.get(position).getImage())
                 .into(holder.img_makanan);
 
-        Toast.makeText(mContext, "dipanggi", Toast.LENGTH_SHORT).show();
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent hasil_start = new Intent(mContext, HasilActivity.class);
+                mContext.startActivity(hasil_start);
+            }
+        });
     }
 
 

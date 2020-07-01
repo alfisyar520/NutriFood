@@ -1,4 +1,4 @@
-package com.example.nutrifoods;
+package com.example.nutrifoods.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -17,12 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.nutrifoods.Adapter.ListPostHomeAdapter;
 import com.example.nutrifoods.Model.MakananModel;
 import com.example.nutrifoods.Model.User;
+import com.example.nutrifoods.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

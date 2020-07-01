@@ -1,10 +1,12 @@
-package com.example.nutrifoods;
+package com.example.nutrifoods.Activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.nutrifoods.R;
 
 import gr.net.maroulis.library.EasySplashScreen;
 
