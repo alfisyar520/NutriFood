@@ -14,7 +14,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp">
 
             <RelativeLayout
                 android:id="@+id/tv_lupaPass_box"
@@ -26,7 +27,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginRight="16dp"
                     android:orientation="vertical"
                     android:padding="18dp">
@@ -39,7 +39,7 @@
                         android:layout_marginBottom="10dp"
                         android:text="Lupa password"
                         android:textColor="#000000"
-                        android:textSize="50sp" />
+                        android:textSize="30sp" />
 
 
                     <TextView
