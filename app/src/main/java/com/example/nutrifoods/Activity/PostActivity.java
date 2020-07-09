@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nutrifoods.Model.MakananModel;
+import com.example.nutrifoods.Model.Nutrisi;
 import com.example.nutrifoods.Model.User;
 import com.example.nutrifoods.R;
 import com.google.android.gms.tasks.Continuation;
@@ -44,11 +45,13 @@ import org.tensorflow.lite.Interpreter;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.AbstractMap;
@@ -133,7 +136,7 @@ public class PostActivity extends AppCompatActivity {
         user = new User();
 
         mAuth = FirebaseAuth.getInstance();
-        mUser =  mAuth.getCurrentUser().getUid();
+        mUser = mAuth.getCurrentUser().getUid();
         storage = FirebaseStorage.getInstance();
         db = FirebaseFirestore.getInstance();
 
@@ -161,11 +164,11 @@ public class PostActivity extends AppCompatActivity {
 
         //initilize graph and labels
 
-        try{
+        try {
             tflite = new Interpreter(loadModelFile(), tfliteOptions);
             labelList = loadLabelList();
             Log.d("label list", String.valueOf(labelList.size()));
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             Log.d("eror ki", "masuk error");
         }
@@ -189,7 +192,7 @@ public class PostActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 // get current bitmap from imageView
-                Bitmap bitmap_orig = ((BitmapDrawable)iv_makanan.getDrawable()).getBitmap();
+                Bitmap bitmap_orig = ((BitmapDrawable) iv_makanan.getDrawable()).getBitmap();
                 // resize the bitmap to the required input size to the CNN
                 Bitmap bitmap = getResizedBitmap(bitmap_orig, DIM_IMG_SIZE_X, DIM_IMG_SIZE_Y);
                 // convert bitmap to byte array
@@ -199,12 +202,12 @@ public class PostActivity extends AppCompatActivity {
                 tflite.run(imgData, labelProbArray);
 
                 // display the results
-                ganti.setText(printTopKLabels());
+                //ganti.setText(printTopKLabels());
 
                 Intent view_start = new Intent(PostActivity.this, DashboardActivity.class);
-                //tambahMakanan();
+                tambahMakanan(printTopKLabels());
                 //startActivity(view_start);
-                //PostActivity.super.onBackPressed();
+                PostActivity.super.onBackPressed();
 
 
             }
@@ -216,6 +219,7 @@ public class PostActivity extends AppCompatActivity {
                 CropImage.activity().setAspectRatio(1, 1).start(PostActivity.this);
             }
         });
+
     }
 
     private void getDataUserFirebase() {
@@ -232,18 +236,18 @@ public class PostActivity extends AppCompatActivity {
         });
     }
 
-    private void tambahMakanan() {
+    private void tambahMakanan(final String top_makanan) {
         final String nama_makanan = et_nama_makanan.getText().toString();
 
-        if (mImageUri != null){
+        if (mImageUri != null) {
             final StorageReference storageReference = storage.getReference()
                     .child(System.currentTimeMillis()
-                    + ".jpg");
+                            + ".jpg");
             UploadTask uploadTask = storageReference.putFile(mImageUri);
             Task<Uri> uriTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()){
+                    if (!task.isSuccessful()) {
                         throw task.getException();
                     }
                     return storageReference.getDownloadUrl();
@@ -251,23 +255,23 @@ public class PostActivity extends AppCompatActivity {
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Uri downloadUri = task.getResult();
                         postMakanan.setImage(downloadUri.toString());
-                        MakananModel postMakanan = new MakananModel(user.getId(), nama_makanan, downloadUri.toString(), user.getUsername(), currentDate, currentTime);
+                        MakananModel postMakanan = new MakananModel(user.getId(), nama_makanan, downloadUri.toString(), user.getUsername(), currentDate, currentTime, top_makanan);
 
                         db.collection("Data Postingan").document().set(postMakanan);
 
                         Toast.makeText(PostActivity.this, "Makanan berhasil ditambahkan", Toast.LENGTH_SHORT).show();
 
-                    }else{
+                    } else {
                         Toast.makeText(PostActivity.this, "Gagal menambahkan makanan", Toast.LENGTH_SHORT).show();
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(PostActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PostActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -328,9 +332,9 @@ public class PostActivity extends AppCompatActivity {
                 final int val = intValues[pixel++];
                 // get rgb values from intValues where each int holds the rgb values for a pixel.
 
-                imgData.putFloat((((val >> 16) & 0xFF)-IMAGE_MEAN)/IMAGE_STD);
-                imgData.putFloat((((val >> 8) & 0xFF)-IMAGE_MEAN)/IMAGE_STD);
-                imgData.putFloat((((val) & 0xFF)-IMAGE_MEAN)/IMAGE_STD);
+                imgData.putFloat((((val >> 16) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
+                imgData.putFloat((((val >> 8) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
+                imgData.putFloat((((val) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
 
             }
         }
@@ -352,12 +356,12 @@ public class PostActivity extends AppCompatActivity {
         for (int i = 0; i < size; ++i) {
             Map.Entry<String, Float> label = sortedLabels.poll();
             topLables[i] = label.getKey();
-            topConfidence[i] = String.format("%.0f%%",label.getValue()*100);
+            topConfidence[i] = String.format("%.0f%%", label.getValue() * 100);
         }
 
         // set the corresponding textviews with the results
         //ganti.setText("1. "+topLables[2]);
-        return(topLables[2]);
+        return (topLables[2]);
         /*
         label2.setText("2. "+topLables[1]);
         label3.setText("3. "+topLables[0]);
@@ -374,7 +378,7 @@ public class PostActivity extends AppCompatActivity {
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            mImageUri =result.getUri();
+            mImageUri = result.getUri();
             iv_makanan.setImageURI(mImageUri);
         }
     }

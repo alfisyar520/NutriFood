@@ -16,16 +16,27 @@ public class MakananModel {
     //@SerializedName("currentTime")
     private String currentTime;
 
+    private String topMakanan;
+
     public MakananModel() {
     }
 
-    public MakananModel(String userID, String nama_makanan, String image, String usernamePublisher, String currentDate, String currentTime) {
+    public MakananModel(String userID, String namaMakanan, String image, String usernamePublisher, String currentDate, String currentTime, String topMakanan) {
         UserID = userID;
-        this.namaMakanan = nama_makanan;
+        this.namaMakanan = namaMakanan;
         this.image = image;
         this.usernamePublisher = usernamePublisher;
         this.currentDate = currentDate;
         this.currentTime = currentTime;
+        this.topMakanan = topMakanan;
+    }
+
+    public String getTopMakanan() {
+        return topMakanan;
+    }
+
+    public void setTopMakanan(String topMakanan) {
+        this.topMakanan = topMakanan;
     }
 
     public String getCurrentDate() {

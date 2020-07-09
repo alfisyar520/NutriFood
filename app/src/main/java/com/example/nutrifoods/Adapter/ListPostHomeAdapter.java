@@ -97,6 +97,7 @@ public class ListPostHomeAdapter extends RecyclerView.Adapter<ListPostHomeAdapte
                                 hasil_start.putExtra("usernamePublisher", makananModel.getUsernamePublisher());
                                 hasil_start.putExtra("currentDate", makananModel.getCurrentDate());
                                 hasil_start.putExtra("currentTime", makananModel.getCurrentTime());
+                                hasil_start.putExtra("topMakanan", makananModel.getTopMakanan());
 
                                 mContext.startActivity(hasil_start);
                             }
