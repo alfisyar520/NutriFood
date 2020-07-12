@@ -74,6 +74,8 @@ public class ListPostHomeAdapter extends RecyclerView.Adapter<ListPostHomeAdapte
 
 
         holder.nama_makanan.setText(listMakanan.get(position).getNamaMakanan());
+        holder.current_date.setText(listMakanan.get(position).getCurrentDate());
+        holder.nama_publisher.setText("By : " + listMakanan.get(position).getUsernamePublisher());
         Glide.with(mContext)
                 .load(listMakanan.get(position).getImage())
                 .into(holder.img_makanan);
@@ -117,12 +119,14 @@ public class ListPostHomeAdapter extends RecyclerView.Adapter<ListPostHomeAdapte
 
     public class ListViewHolder extends RecyclerView.ViewHolder {
         CircleImageView img_makanan;
-        TextView nama_makanan;
+        TextView nama_makanan, current_date, nama_publisher;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
             img_makanan = itemView.findViewById(R.id.profile_makanan);
             nama_makanan = itemView.findViewById(R.id.daftar_namaMakanan);
+            current_date = itemView.findViewById(R.id.daftar_currentDate);
+            nama_publisher = itemView.findViewById(R.id.daftar_namaPublisher);
         }
     }
 }

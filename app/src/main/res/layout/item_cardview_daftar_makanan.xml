@@ -30,15 +30,43 @@
                 android:layout_height="80dp"
                 android:src="@color/kuning"/>
 
-            <TextView
-                android:id="@+id/daftar_namaMakanan"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="username"
-                android:layout_gravity="center_vertical"
-                android:textSize="20dp"
-                android:layout_marginStart="15dp"
-                android:textColor="#000"/>
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/daftar_namaMakanan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="15dp"
+                    android:text="username"
+                    android:textColor="#000"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/daftar_currentDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current Date"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="10dp"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/abu"/>
+                <TextView
+                    android:id="@+id/daftar_namaPublisher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama publisher"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="10dp"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/abu"/>
+
+            </LinearLayout>
+
             
             <View
                 android:layout_gravity="center"
@@ -52,6 +80,8 @@
                 android:layout_gravity="center"
                 android:src="@drawable/ic_right_arrow"
                 />
+
+
 
         </LinearLayout>
 
