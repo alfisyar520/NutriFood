@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Bitmap;
@@ -72,6 +73,9 @@ public class PostActivity extends AppCompatActivity {
     private String currentDate;
     private String currentTime;
     private TextView ganti;
+
+
+    ProgressDialog pd;
 
     //firebase
     private FirebaseAuth mAuth;
@@ -191,6 +195,10 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                pd = new ProgressDialog(PostActivity.this);
+                pd.setMessage("Please wait.. ");
+                pd.show();
+
                 // get current bitmap from imageView
                 Bitmap bitmap_orig = ((BitmapDrawable) iv_makanan.getDrawable()).getBitmap();
                 // resize the bitmap to the required input size to the CNN
@@ -207,7 +215,7 @@ public class PostActivity extends AppCompatActivity {
                 Intent view_start = new Intent(PostActivity.this, DashboardActivity.class);
                 tambahMakanan(printTopKLabels());
                 //startActivity(view_start);
-                PostActivity.super.onBackPressed();
+                //PostActivity.super.onBackPressed();
 
 
             }
@@ -263,7 +271,9 @@ public class PostActivity extends AppCompatActivity {
                         db.collection("Data Postingan").document().set(postMakanan);
 
                         Toast.makeText(PostActivity.this, "Makanan berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-
+                        //Toast.makeText(PostActivity.this, "Silahkan SWIPE kebawah", Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+                        PostActivity.super.onBackPressed();
                     } else {
                         Toast.makeText(PostActivity.this, "Gagal menambahkan makanan", Toast.LENGTH_SHORT).show();
                     }
@@ -382,4 +392,7 @@ public class PostActivity extends AppCompatActivity {
             iv_makanan.setImageURI(mImageUri);
         }
     }
+
+
+
 }

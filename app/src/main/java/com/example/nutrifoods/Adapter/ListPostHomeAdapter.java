@@ -63,14 +63,6 @@ public class ListPostHomeAdapter extends RecyclerView.Adapter<ListPostHomeAdapte
     public void onBindViewHolder(final ListPostHomeAdapter.ListViewHolder holder, int position) {
 
         db = FirebaseFirestore.getInstance();
-        /*
-        int count = 0;
-        for (Map.Entry<String, MakananModel> e : data.entrySet()){
-            percobaan.put(e.getKey(), e.getValue().getImage());
-        }
-
-         */
-
 
 
         holder.nama_makanan.setText(listMakanan.get(position).getNamaMakanan());

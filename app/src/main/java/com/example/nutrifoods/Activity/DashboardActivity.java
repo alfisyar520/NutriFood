@@ -169,12 +169,16 @@ public class DashboardActivity extends AppCompatActivity {
                 }
                 myAdapter = new ListPostHomeAdapter(DashboardActivity.this, downModelArrayList, dataku);
                 recyclerView.setAdapter(myAdapter);
-                //Toast.makeText(DashboardActivity.this, "panggi", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getDataFromFirestore();
+    }
 
     @Override
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
