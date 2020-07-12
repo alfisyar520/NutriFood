@@ -18,7 +18,7 @@ import java.nio.charset.Charset;
 
 public class HasilActivity extends AppCompatActivity {
 
-    private TextView tv_nama_makanan, tv_air, tv_energi, tv_protein, tv_lemak, tv_karbohidrat, tv_serat,
+    private TextView tv_nama_makanan, tv_tanggal, tv_air, tv_energi, tv_protein, tv_lemak, tv_karbohidrat, tv_serat,
             tv_abu, tv_kalsium, tv_fosfor, tv_besi, tv_natrium, tv_kalium, tv_tembaga, tv_seng, tv_vitA, tv_vitB1, tv_vitB2, tv_vitC;
     private ImageView iv_gambar_makanan;
     private String id_makanan, nama_makanan, userId, image, usernamePublisher,currentDate, currentTime, topMakanan;
@@ -32,6 +32,7 @@ public class HasilActivity extends AppCompatActivity {
 
         tv_nama_makanan = findViewById(R.id.tv_hasil_namaMakanan);
         iv_gambar_makanan = findViewById(R.id.iv_hasil_GambarMakanan);
+        tv_tanggal = findViewById(R.id.tv_hasil_tanggal);
 
         //gizi
         tv_air = findViewById(R.id.hasil_air);
@@ -74,6 +75,7 @@ public class HasilActivity extends AppCompatActivity {
 
     private void setIntent(String id_makanan, String nama_makanan, String userId, String image, String usernamePublisher, String currentDate, String currentTime, String topMakanan) {
         tv_nama_makanan.setText(nama_makanan);
+        tv_tanggal.setText(currentDate);
         Glide.with(getApplicationContext()).load(image).into(iv_gambar_makanan);
     }
 

@@ -45,6 +45,15 @@
             android:background="@color/cardview_dark_background"
             android:layout_gravity="center"/>
 
+        <TextView
+            android:id="@+id/tv_hasil_tanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tanggal"
+            android:layout_gravity="center"
+            android:textColor="#DFFFFFFF"
+            android:textSize="15sp"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -61,8 +70,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="30dp"
+                android:paddingTop="30dp"
                 android:layout_marginRight="50dp"
+                android:paddingBottom="20dp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -71,11 +81,6 @@
                     android:background="@drawable/background_hasil_item"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
 
                     <TextView
                         android:id="@+id/hasil_air"
@@ -95,11 +100,6 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
-
                     <TextView
                         android:id="@+id/hasil_energi"
                         android:layout_width="wrap_content"
@@ -117,11 +117,6 @@
                     android:background="@drawable/background_hasil_item"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
 
                     <TextView
                         android:id="@+id/hasil_protein"
@@ -141,11 +136,6 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
-
                     <TextView
                         android:id="@+id/hasil_lemak"
                         android:layout_width="wrap_content"
@@ -163,11 +153,6 @@
                     android:background="@drawable/background_hasil_item"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
 
                     <TextView
                         android:id="@+id/hasil_karbohidrat"
@@ -187,11 +172,6 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
-
                     <TextView
                         android:id="@+id/hasil_serat"
                         android:layout_width="wrap_content"
@@ -209,11 +189,6 @@
                     android:background="@drawable/background_hasil_item"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
 
                     <TextView
                         android:id="@+id/hasil_abu"
@@ -233,11 +208,6 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
-
                     <TextView
                         android:id="@+id/hasil_kalsium"
                         android:layout_width="wrap_content"
@@ -255,11 +225,6 @@
                     android:background="@drawable/background_hasil_item"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
 
                     <TextView
                         android:id="@+id/hasil_fosfor"
@@ -279,11 +244,6 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
-
                     <TextView
                         android:id="@+id/hasil_besi"
                         android:layout_width="wrap_content"
@@ -301,11 +261,6 @@
                     android:background="@drawable/background_hasil_item"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
 
                     <TextView
                         android:id="@+id/hasil_natrium"
@@ -325,11 +280,6 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
-
                     <TextView
                         android:id="@+id/hasil_kalium"
                         android:layout_width="wrap_content"
@@ -347,11 +297,6 @@
                     android:background="@drawable/background_hasil_item"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
 
                     <TextView
                         android:id="@+id/hasil_tembaga"
@@ -371,11 +316,6 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
-
                     <TextView
                         android:id="@+id/hasil_seng"
                         android:layout_width="wrap_content"
@@ -393,11 +333,6 @@
                     android:background="@drawable/background_hasil_item"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
 
                     <TextView
                         android:id="@+id/hasil_vitA"
@@ -417,11 +352,6 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
-
                     <TextView
                         android:id="@+id/hasil_vitB1"
                         android:layout_width="wrap_content"
@@ -439,11 +369,6 @@
                     android:background="@drawable/background_hasil_item"
                     android:gravity="center"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
 
                     <TextView
                         android:id="@+id/hasil_vitB2"
@@ -463,11 +388,6 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_logo" />
-
                     <TextView
                         android:id="@+id/hasil_vitC"
                         android:layout_width="wrap_content"
@@ -481,9 +401,6 @@
 
             </LinearLayout>
         </ScrollView>
-
-
-
 
     </LinearLayout>
 </RelativeLayout>
