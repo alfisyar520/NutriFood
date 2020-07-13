@@ -64,8 +64,11 @@ public class ListPostHomeAdapter extends RecyclerView.Adapter<ListPostHomeAdapte
 
         db = FirebaseFirestore.getInstance();
 
-
-        holder.nama_makanan.setText(listMakanan.get(position).getNamaMakanan());
+        if (listMakanan.get(position).getNamaMakanan().isEmpty()){
+            holder.nama_makanan.setText(listMakanan.get(position).getTopMakanan());
+        }else{
+            holder.nama_makanan.setText(listMakanan.get(position).getNamaMakanan());
+        }
         holder.current_date.setText(listMakanan.get(position).getCurrentDate());
         holder.nama_publisher.setText("By : " + listMakanan.get(position).getUsernamePublisher());
         Glide.with(mContext)
