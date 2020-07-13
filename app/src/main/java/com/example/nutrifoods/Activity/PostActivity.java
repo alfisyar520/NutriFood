@@ -190,43 +190,46 @@ public class PostActivity extends AppCompatActivity {
         // initialize array to hold top probabilities
         topConfidence = new String[RESULTS_TO_SHOW];
 
-
-        btn_post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                pd = new ProgressDialog(PostActivity.this);
-                pd.setMessage("Please wait.. ");
-                pd.show();
-
-                // get current bitmap from imageView
-                Bitmap bitmap_orig = ((BitmapDrawable) iv_makanan.getDrawable()).getBitmap();
-                // resize the bitmap to the required input size to the CNN
-                Bitmap bitmap = getResizedBitmap(bitmap_orig, DIM_IMG_SIZE_X, DIM_IMG_SIZE_Y);
-                // convert bitmap to byte array
-                convertBitmapToByteBuffer(bitmap);
-                // pass byte data to the graph
-
-                tflite.run(imgData, labelProbArray);
-
-                // display the results
-                //ganti.setText(printTopKLabels());
-
-                Intent view_start = new Intent(PostActivity.this, DashboardActivity.class);
-                tambahMakanan(printTopKLabels());
-                //startActivity(view_start);
-                //PostActivity.super.onBackPressed();
-
-
-            }
-        });
-
         iv_makanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CropImage.activity().setAspectRatio(1, 1).start(PostActivity.this);
             }
         });
+
+        btn_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (iv_makanan.getDrawable() == null){
+                    Toast.makeText(PostActivity.this, "Silahkan pilih gambar terlebih dahulu", Toast.LENGTH_SHORT).show();
+                }else{
+                    pd = new ProgressDialog(PostActivity.this);
+                    pd.setMessage("Please wait.. ");
+                    pd.show();
+
+                    // get current bitmap from imageView
+                    Bitmap bitmap_orig = ((BitmapDrawable) iv_makanan.getDrawable()).getBitmap();
+                    // resize the bitmap to the required input size to the CNN
+                    Bitmap bitmap = getResizedBitmap(bitmap_orig, DIM_IMG_SIZE_X, DIM_IMG_SIZE_Y);
+                    // convert bitmap to byte array
+                    convertBitmapToByteBuffer(bitmap);
+                    // pass byte data to the graph
+
+                    tflite.run(imgData, labelProbArray);
+
+                    // display the results
+                    //ganti.setText(printTopKLabels());
+
+                    Intent view_start = new Intent(PostActivity.this, DashboardActivity.class);
+                    tambahMakanan(printTopKLabels());
+                    //startActivity(view_start);
+                    //PostActivity.super.onBackPressed();
+                }
+            }
+        });
+
+
 
     }
 

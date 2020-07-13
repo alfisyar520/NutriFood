@@ -63,7 +63,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="2dp"
                     android:foregroundGravity="top"
-                    android:src="@drawable/ic_picture" />
+                    android:background="@drawable/ic_picture"
+                    />
 
                 <LinearLayout
                     android:id="@+id/post_box"
