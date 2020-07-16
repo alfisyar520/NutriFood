@@ -37,13 +37,30 @@
             android:text="nama makanan"
             android:textColor="#ffffff"
             android:textSize="30sp" />
+        
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
-        <ImageView
-            android:id="@+id/iv_hasil_GambarMakanan"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:background="@color/cardview_dark_background"
-            android:layout_gravity="center"/>
+            <ImageView
+                android:id="@+id/iv_hasil_GambarMakanan"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:background="@color/cardview_dark_background"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"/>
+
+            <ImageView
+                android:id="@+id/iv_hasil_info"
+                android:layout_width="26dp"
+                android:layout_height="30dp"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_info" />
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/tv_hasil_tanggal"

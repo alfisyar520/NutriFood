@@ -2,10 +2,15 @@ package com.example.nutrifoods.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.nutrifoods.R;
@@ -20,7 +25,9 @@ public class HasilActivity extends AppCompatActivity {
 
     private TextView tv_nama_makanan, tv_tanggal, tv_air, tv_energi, tv_protein, tv_lemak, tv_karbohidrat, tv_serat,
             tv_abu, tv_kalsium, tv_fosfor, tv_besi, tv_natrium, tv_kalium, tv_tembaga, tv_seng, tv_vitA, tv_vitB1, tv_vitB2, tv_vitC;
-    private ImageView iv_gambar_makanan;
+    private TextView tv_info;
+    private ImageView iv_gambar_makanan, iv_gambar_info;
+    Dialog mDialog;
     private String id_makanan, nama_makanan, userId, image, usernamePublisher,currentDate, currentTime, topMakanan;
 
     //firebase
@@ -33,6 +40,7 @@ public class HasilActivity extends AppCompatActivity {
         tv_nama_makanan = findViewById(R.id.tv_hasil_namaMakanan);
         iv_gambar_makanan = findViewById(R.id.iv_hasil_GambarMakanan);
         tv_tanggal = findViewById(R.id.tv_hasil_tanggal);
+        iv_gambar_info = findViewById(R.id.iv_hasil_info);
 
         //gizi
         tv_air = findViewById(R.id.hasil_air);
@@ -57,6 +65,26 @@ public class HasilActivity extends AppCompatActivity {
         getIncomingIntent();
 
         readCSVFile();
+
+
+        //tv_info.setText(getString(R.string.app_name));
+
+        iv_gambar_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialog = new Dialog(HasilActivity.this);
+                mDialog.setContentView(R.layout.popup_info);
+                mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+                tv_info = (TextView) mDialog.findViewById(R.id.tv_info);
+                //tv_info.setEnabled(true);
+                tv_info.setText("Dari hasil  pengujian, makanan ini termasuk dalam kategori\n''"+ topMakanan+"''");
+                //tv_info.setText(getString(R.string.app_name));
+
+                mDialog.show();
+            }
+        });
     }
 
     private void getIncomingIntent() {
