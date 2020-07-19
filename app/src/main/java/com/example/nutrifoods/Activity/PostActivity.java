@@ -202,7 +202,7 @@ public class PostActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (iv_makanan.getDrawable() == null){
-                    Toast.makeText(PostActivity.this, "Silahkan pilih gambar terlebih dahulu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PostActivity.this, "Silahkan pilih gambar terlebih dulu", Toast.LENGTH_SHORT).show();
                 }else{
                     pd = new ProgressDialog(PostActivity.this);
                     pd.setMessage("Please wait.. ");
@@ -297,7 +297,7 @@ public class PostActivity extends AppCompatActivity {
 
     // loads tflite graph from file
     private MappedByteBuffer loadModelFile() throws IOException {
-        AssetFileDescriptor fileDescriptor = this.getAssets().openFd("model.tflite");
+        AssetFileDescriptor fileDescriptor = this.getAssets().openFd("model_train_30_epoch.tflite");
         FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
         FileChannel fileChannel = inputStream.getChannel();
         long startOffset = fileDescriptor.getStartOffset();
